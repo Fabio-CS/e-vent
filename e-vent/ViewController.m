@@ -10,6 +10,10 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *readCode;
+@property (weak, nonatomic) IBOutlet UIButton *createCode;
+@property (weak, nonatomic) IBOutlet UIButton *listCodes;
+
 @end
 
 @implementation ViewController
