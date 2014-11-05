@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mhB-E6-3PU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="main" id="V68-7L-lbB"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="mainScreen" id="V68-7L-lbB"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bav-Y7-3VZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -302,6 +302,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="buttonGenerate:" destination="tre-0M-GBb" eventType="touchUpInside" id="eNu-x4-WKE"/>
+                                    <segue destination="zPP-HY-BIy" kind="show" identifier="generate" id="qhd-us-eud"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -333,7 +334,6 @@
                         <outlet property="datePickerEnd" destination="7Ot-Y8-ipc" id="Qdy-Gf-i2c"/>
                         <outlet property="datePickerStart" destination="Vcq-Bz-5qt" id="FbL-T4-2KT"/>
                         <outlet property="textFieldTitle" destination="NBa-bm-TGM" id="lXi-tO-EFB"/>
-                        <segue destination="zPP-HY-BIy" kind="show" identifier="showCode" id="KIo-R3-kn1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSX-cv-lji" userLabel="First Responder" sceneMemberID="firstResponder"/>

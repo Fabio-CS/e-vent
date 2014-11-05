@@ -49,15 +49,14 @@
     NSString *dtEnd = [dateFormatter stringFromDate:self.dateEnd];
     
     NSString *url = [[NSString alloc] initWithFormat:@"http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=BEGIN%3AVEVENT%0ASUMMARY%3A%@%0ADTSTART%3A%@%0ADTEND%3A%@%0AEND%3AVEVENT&qzone=4&margin=0&size=300x300&ecc=L", self.titleEvent, dtStart, dtEnd];
+    NSLog(@"%@",url);
     return url;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue isKindOfClass:[ImageViewController class]]) {
         ImageViewController *ivc = (ImageViewController *)segue;
         NSURL *url = [[NSURL alloc] initWithString:[self getCodeURL]];
         ivc.imageURL = url;
- }
 }
 
 
