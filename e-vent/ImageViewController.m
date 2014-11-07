@@ -11,8 +11,12 @@
 @interface ImageViewController () <UIScrollViewDelegate, UISplitViewControllerDelegate>
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
+@property (weak, nonatomic) IBOutlet UILabel *labelTitle;
+@property (weak, nonatomic) IBOutlet UILabel *labelStarts;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *labelEnds;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+
 @end
 
 @implementation ImageViewController
@@ -22,6 +26,11 @@
 {
     [super viewDidLoad];
     [self.scrollView addSubview:self.imageView];
+    if (self.eventTitle) {
+        self.labelTitle.text = [self.labelTitle.text stringByAppendingString:self.eventTitle];
+        self.labelStarts.text = [self.labelStarts.text stringByAppendingString:self.eventStarts];
+        self.labelEnds.text = [self.labelEnds.text stringByAppendingString:self.eventEnds];
+    }
 }
 
 
