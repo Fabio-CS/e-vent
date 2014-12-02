@@ -7,7 +7,7 @@
 //
 
 #import "ReadCodeViewController.h"
-@interface ReadCodeViewController()<UIScrollViewDelegate, UISplitViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface ReadCodeViewController()<UIScrollViewDelegate, UISplitViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic) UIImagePickerController *imagePickerController;
@@ -125,10 +125,61 @@
     self.image = image;
     [self dismissViewControllerAnimated:YES completion:NULL];
     self.imagePickerController = nil;
-    [self iCalStringParser:@"jajajaja"];
-    [self createCalendarEvent];
+    [self readCode];
+  
 }
 
+-(void)readCode{
+    NSURL *url = [NSURL URLWithString:@"http://api.qrserver.com/v1/read-qr-code/"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    [request setHTTPShouldHandleCookies:NO];
+    [request setTimeoutInterval:30];
+    [request setHTTPMethod:@"POST"];
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data"];
+    [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+    NSData *imageData = UIImagePNGRepresentation(self.image);
+
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    
+    
+    // Build the request body
+    NSString *boundary = @"SportuondoFormBoundary";
+    NSMutableData *body = [NSMutableData data];
+    // Body part for "deviceId" parameter. This is a string.
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"MAX_FILE_SIZE"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", @"1048576"] dataUsingEncoding:NSUTF8StringEncoding]];
+    // Body part for the attachament. This is an image.
+    if (imageData) {
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.png\"\r\n", @"file"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:imageData];
+        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // Setup the session
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfiguration.HTTPAdditionalHeaders = @{@"Content-Type"  : [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary]
+                                                   };
+   request.HTTPBody = body;
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSString *icalString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSLog(@"%@",icalString);
+                [self iCalStringParser:icalString];
+                [self createCalendarEvent];
+            });
+        }
+    }];
+    [task resume];
+
+}
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -148,6 +199,13 @@
         [event setCalendar:[store defaultCalendarForNewEvents]];
         NSError *err = nil;
         [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+        
+        UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Event Created!"
+                                                         message:[NSString stringWithFormat:@"The event: %@ was created in your calendar", self.eventTitle]
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil];
+        [message show];
     }];
 }
 
@@ -174,6 +232,8 @@
     self.eventDTEnds = [iCalDict objectForKey:@"DTEND"];
     return iCalDict;
 }
+
+
 
 #pragma mark - iPadView
 - (void)awakeFromNib
