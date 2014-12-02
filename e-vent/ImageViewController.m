@@ -8,7 +8,7 @@
 
 #import "ImageViewController.h"
 
-@interface ImageViewController () <UIScrollViewDelegate, UISplitViewControllerDelegate>
+@interface ImageViewController () <UIScrollViewDelegate, UISplitViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
@@ -104,6 +104,15 @@
         }];
         [task resume];
     }
+}
+- (IBAction)exportCode:(id)sender {
+    UIImageWriteToSavedPhotosAlbum(self.image, nil, nil, nil);
+    UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Code Exported!"
+                                                     message:@"Your code is saved in your photo album."
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+    [message show];
 }
 
 - (void)awakeFromNib

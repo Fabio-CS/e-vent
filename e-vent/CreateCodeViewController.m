@@ -55,7 +55,8 @@
     NSString *dtEnd = [dateFormatter stringFromDate:self.dateEnd];
     NSLog(@"%@",dtEnd);
     NSString *url = @"http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=BEGIN%3AVEVENT%0ASUMMARY%3A";
-    url = [url stringByAppendingString:self.titleEvent];
+    NSString *escapedTitle =[self.titleEvent stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    url = [url stringByAppendingString:escapedTitle];
     url = [url stringByAppendingString:@"%0ADTSTART%3A"];
     url = [url stringByAppendingString:dtStart];
     url = [url stringByAppendingString:@"Z%0ADTEND%3A"];
