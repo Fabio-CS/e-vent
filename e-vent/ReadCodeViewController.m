@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSString *eventTitle;
 @property (nonatomic, strong) NSString *eventStarts;
 @property (nonatomic, strong) NSString *eventEnds;
+@property (nonatomic, strong) NSDate *eventDTStarts;
+@property (nonatomic, strong) NSDate *eventDTEnds;
 @end
 @implementation ReadCodeViewController
 
@@ -37,6 +39,37 @@
 {
     if (!_imageView) _imageView = [[UIImageView alloc] init];
     return _imageView;
+}
+
+-(void)setEventDTStarts:(NSDate *)eventDTStarts{
+    self.eventDTStarts = eventDTStarts;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    self.eventStarts = [dateFormatter stringFromDate:self.eventDTStarts];
+}
+
+-(void)setEventDTEnds:(NSDate *)eventDTEnds{
+    self.eventDTEnds = eventDTEnds;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    self.eventStarts = [dateFormatter stringFromDate:self.eventDTStarts];
+}
+
+-(void)setEventTitle:(NSString *)eventTitle{
+    self.eventTitle = eventTitle;
+    self.labelTitle.text = [self.labelTitle.text stringByAppendingString:self.eventTitle];
+}
+
+-(void)setEventStarts:(NSString *)eventStarts{
+    self.eventStarts = eventStarts;
+    self.labelStarts.text = [self.labelStarts.text stringByAppendingString:self.eventStarts];
+}
+
+-(void)setEventEnds:(NSString *)eventEnds{
+    self.eventEnds = eventEnds;
+    self.labelEnds.text = [self.labelEnds.text stringByAppendingString:self.eventEnds];
 }
 
 - (UIImage *)image
@@ -92,6 +125,8 @@
     self.image = image;
     [self dismissViewControllerAnimated:YES completion:NULL];
     self.imagePickerController = nil;
+    [self iCalStringParser:@"jajajaja"];
+    [self createCalendarEvent];
 }
 
 
@@ -99,6 +134,45 @@
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
     self.imagePickerController = nil;
+}
+
+#pragma mark - createEvent
+- (void)createCalendarEvent{
+    EKEventStore *store = [[EKEventStore alloc] init];
+    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        if (!granted) { return; }
+        EKEvent *event = [EKEvent eventWithEventStore:store];
+        event.title = self.eventTitle;
+        event.startDate = self.eventDTStarts;
+        event.endDate = self.eventDTEnds;
+        [event setCalendar:[store defaultCalendarForNewEvents]];
+        NSError *err = nil;
+        [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+    }];
+}
+
+- (NSDictionary *)iCalStringParser:(NSString *)icalString{
+    icalString = @"BEGIN:VEVENT\nSUMMARY:Evento\nDTSTART:20141201T120000Z\nDTEND:20141203T120000Z\nEND:VEVENT";
+    NSMutableDictionary *iCalDict = [[NSMutableDictionary alloc] init];
+    NSMutableArray *dataEvent = [NSMutableArray arrayWithArray:[icalString componentsSeparatedByString:@"\n"]];
+    [dataEvent removeObjectAtIndex:0];
+    [dataEvent removeLastObject];
+    for (NSString *data in dataEvent) {
+        NSArray *item = [NSArray arrayWithArray:[data componentsSeparatedByString:@":"]];
+        [iCalDict setObject:item[1] forKey:item[0]];
+    }
+    NSString *strDTStart = [iCalDict objectForKey:@"DTSTART"];
+    NSString *strDTEnd = [iCalDict objectForKey:@"DTEND"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyyMMdd'T'HHmmss'Z'"];
+    NSDate *dtStart = [dateFormatter dateFromString:strDTStart];
+    NSDate *dtEnd = [dateFormatter dateFromString:strDTEnd];
+    [iCalDict setObject:dtStart forKey:@"DTSTART"];
+    [iCalDict setObject:dtEnd forKey:@"DTEND"];
+    self.eventTitle = [iCalDict objectForKey:@"SUMMARY"];
+    self.eventDTStarts = [iCalDict objectForKey:@"DTSTART"];
+    self.eventDTEnds = [iCalDict objectForKey:@"DTEND"];
+    return iCalDict;
 }
 
 #pragma mark - iPadView
