@@ -17,6 +17,11 @@
     event.dtStart = dtStart;
     event.dtEnd = dtEnd;
     event.code = image;
+    NSError *error = nil;
+    [context save:&error];
+    if(error){
+        NSLog(@"Error in managedObjectContext: %@", error);
+    }
     return event;
 }
 
