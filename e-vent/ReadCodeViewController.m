@@ -7,6 +7,9 @@
 //
 
 #import "ReadCodeViewController.h"
+#import "Event+Create.h"
+#import "AppDelegate.h"
+
 @interface ReadCodeViewController()<UIScrollViewDelegate, UISplitViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
@@ -208,6 +211,8 @@
         [event setCalendar:[store defaultCalendarForNewEvents]];
         NSError *err = nil;
         [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+        Event *eventSaved = [Event eventWithTitle:self.eventTitle dateStart:self.eventDTStarts andDateEnd:self.eventDTEnds andqrcore:UIImagePNGRepresentation(self.image) inManagedObjectContext:self.managedObjectContext];
+        NSLog(@"Event Saved: %@",eventSaved);
         
         UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Event Created!"
                                                          message:[NSString stringWithFormat:@"The event: %@ was created in your calendar", self.eventTitle]

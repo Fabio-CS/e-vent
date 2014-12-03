@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "EventsDatabase.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSDictionary *userInfo = self.managedObjectContext ? @{ EventsDatabaseAvailabilityContext : self.managedObjectContext } : nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:EventsDatabaseAvailabilityNotification
+                                                        object:self
+                                                      userInfo:userInfo];
+    ViewController *vc = [[ViewController alloc] init];
+    vc.managedObjectContext = self.managedObjectContext;
+    
+    
     return YES;
 }
 

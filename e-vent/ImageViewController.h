@@ -14,4 +14,8 @@
 @property (nonatomic, strong) NSString *eventTitle;
 @property (nonatomic, strong) NSString *eventStarts;
 @property (nonatomic, strong) NSString *eventEnds;
+@property (nonatomic, strong) NSDate *eventDtStart;
+@property (nonatomic, strong) NSDate *eventDtEnd;
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end

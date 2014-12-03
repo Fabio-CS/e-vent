@@ -10,7 +10,10 @@
 		052DCCD51A09FD5300048F79 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052DCCD41A09FD5300048F79 /* ImageViewController.m */; };
 		052DCCDB1A0A104C00048F79 /* CreateCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052DCCDA1A0A104C00048F79 /* CreateCodeViewController.m */; };
 		052DCCDE1A0A10AC00048F79 /* ReadCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052DCCDD1A0A10AC00048F79 /* ReadCodeViewController.m */; };
-		052DCCE11A0A10F200048F79 /* GenerateCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052DCCE01A0A10F200048F79 /* GenerateCodeViewController.m */; };
+		05F4B0B41A2EEB1D00D9C425 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B0B31A2EEB1D00D9C425 /* CoreDataTableViewController.m */; };
+		05F4B0B71A2EEBBF00D9C425 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B0B61A2EEBBF00D9C425 /* Event.m */; };
+		05F4B0BA1A2EF26A00D9C425 /* SavedEventsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B0B91A2EF26A00D9C425 /* SavedEventsTVC.m */; };
+		05F4B0BD1A2F226F00D9C425 /* Event+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B0BC1A2F226F00D9C425 /* Event+Create.m */; };
 		05FFE5D21A08B6B600EC7D62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FFE5D11A08B6B600EC7D62 /* main.m */; };
 		05FFE5D51A08B6B600EC7D62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FFE5D41A08B6B600EC7D62 /* AppDelegate.m */; };
 		05FFE5D81A08B6B600EC7D62 /* e_vent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05FFE5D61A08B6B600EC7D62 /* e_vent.xcdatamodeld */; };
@@ -38,8 +41,15 @@
 		052DCCDA1A0A104C00048F79 /* CreateCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateCodeViewController.m; sourceTree = "<group>"; };
 		052DCCDC1A0A10AC00048F79 /* ReadCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadCodeViewController.h; sourceTree = "<group>"; };
 		052DCCDD1A0A10AC00048F79 /* ReadCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadCodeViewController.m; sourceTree = "<group>"; };
-		052DCCDF1A0A10F200048F79 /* GenerateCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateCodeViewController.h; sourceTree = "<group>"; };
-		052DCCE01A0A10F200048F79 /* GenerateCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateCodeViewController.m; sourceTree = "<group>"; };
+		05F4B0B21A2EEB1D00D9C425 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		05F4B0B31A2EEB1D00D9C425 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		05F4B0B51A2EEBBF00D9C425 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		05F4B0B61A2EEBBF00D9C425 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		05F4B0B81A2EF26A00D9C425 /* SavedEventsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedEventsTVC.h; sourceTree = "<group>"; };
+		05F4B0B91A2EF26A00D9C425 /* SavedEventsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedEventsTVC.m; sourceTree = "<group>"; };
+		05F4B0BB1A2F226F00D9C425 /* Event+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+Create.h"; sourceTree = "<group>"; };
+		05F4B0BC1A2F226F00D9C425 /* Event+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+Create.m"; sourceTree = "<group>"; };
+		05F4B0BF1A2F363900D9C425 /* EventsDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventsDatabase.h; sourceTree = "<group>"; };
 		05FFE5CC1A08B6B600EC7D62 /* e-vent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-vent.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05FFE5D01A08B6B600EC7D62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05FFE5D11A08B6B600EC7D62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -74,6 +84,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05F4B0B01A2EEAF900D9C425 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				05F4B0B11A2EEB1D00D9C425 /* CoreDataTableViewController */,
+				05FFE5D61A08B6B600EC7D62 /* e_vent.xcdatamodeld */,
+				05F4B0B51A2EEBBF00D9C425 /* Event.h */,
+				05F4B0B61A2EEBBF00D9C425 /* Event.m */,
+				05F4B0B81A2EF26A00D9C425 /* SavedEventsTVC.h */,
+				05F4B0B91A2EF26A00D9C425 /* SavedEventsTVC.m */,
+				05F4B0BB1A2F226F00D9C425 /* Event+Create.h */,
+				05F4B0BC1A2F226F00D9C425 /* Event+Create.m */,
+				05F4B0BF1A2F363900D9C425 /* EventsDatabase.h */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		05F4B0B11A2EEB1D00D9C425 /* CoreDataTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				05F4B0B21A2EEB1D00D9C425 /* CoreDataTableViewController.h */,
+				05F4B0B31A2EEB1D00D9C425 /* CoreDataTableViewController.m */,
+			);
+			path = CoreDataTableViewController;
+			sourceTree = "<group>";
+		};
 		05FFE5C31A08B6B600EC7D62 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +130,7 @@
 		05FFE5CE1A08B6B600EC7D62 /* e-vent */ = {
 			isa = PBXGroup;
 			children = (
+				05F4B0B01A2EEAF900D9C425 /* CoreData */,
 				052DCCDC1A0A10AC00048F79 /* ReadCodeViewController.h */,
 				052DCCDD1A0A10AC00048F79 /* ReadCodeViewController.m */,
 				052DCCD91A0A104C00048F79 /* CreateCodeViewController.h */,
@@ -108,10 +144,7 @@
 				05FFE5DC1A08B6B600EC7D62 /* Main.storyboard */,
 				05FFE5DF1A08B6B600EC7D62 /* Images.xcassets */,
 				05FFE5E11A08B6B600EC7D62 /* LaunchScreen.xib */,
-				05FFE5D61A08B6B600EC7D62 /* e_vent.xcdatamodeld */,
 				05FFE5CF1A08B6B600EC7D62 /* Supporting Files */,
-				052DCCDF1A0A10F200048F79 /* GenerateCodeViewController.h */,
-				052DCCE01A0A10F200048F79 /* GenerateCodeViewController.m */,
 			);
 			path = "e-vent";
 			sourceTree = "<group>";
@@ -245,9 +278,12 @@
 			files = (
 				052DCCD51A09FD5300048F79 /* ImageViewController.m in Sources */,
 				052DCCDE1A0A10AC00048F79 /* ReadCodeViewController.m in Sources */,
+				05F4B0B71A2EEBBF00D9C425 /* Event.m in Sources */,
+				05F4B0B41A2EEB1D00D9C425 /* CoreDataTableViewController.m in Sources */,
+				05F4B0BA1A2EF26A00D9C425 /* SavedEventsTVC.m in Sources */,
 				05FFE5D51A08B6B600EC7D62 /* AppDelegate.m in Sources */,
+				05F4B0BD1A2F226F00D9C425 /* Event+Create.m in Sources */,
 				05FFE5D81A08B6B600EC7D62 /* e_vent.xcdatamodeld in Sources */,
-				052DCCE11A0A10F200048F79 /* GenerateCodeViewController.m in Sources */,
 				05FFE5DB1A08B6B600EC7D62 /* ViewController.m in Sources */,
 				05FFE5D21A08B6B600EC7D62 /* main.m in Sources */,
 				052DCCDB1A0A104C00048F79 /* CreateCodeViewController.m in Sources */,

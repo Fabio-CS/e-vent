@@ -7,16 +7,16 @@
 //
 
 #import "ImageViewController.h"
+#import "Event+Create.h"
+#import "EventsDatabase.h"
 
 @interface ImageViewController () <UIScrollViewDelegate, UISplitViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) UIImage *image;
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 @property (weak, nonatomic) IBOutlet UILabel *labelStarts;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *labelEnds;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-
 @end
 
 @implementation ImageViewController
@@ -30,6 +30,9 @@
         self.labelTitle.text = [self.labelTitle.text stringByAppendingString:self.eventTitle];
         self.labelStarts.text = [self.labelStarts.text stringByAppendingString:self.eventStarts];
         self.labelEnds.text = [self.labelEnds.text stringByAppendingString:self.eventEnds];
+        if(self.image){
+            self.imageView.image = self.image;
+        }
     }
 }
 
@@ -107,6 +110,8 @@
 }
 - (IBAction)exportCode:(id)sender {
     UIImageWriteToSavedPhotosAlbum(self.image, nil, nil, nil);
+    Event *eventSaved = [Event eventWithTitle:self.eventTitle dateStart:self.eventDtStart andDateEnd:self.eventDtEnd andqrcore:UIImagePNGRepresentation(self.image) inManagedObjectContext:self.managedObjectContext];
+    NSLog(@"Event Saved: %@",eventSaved);
     UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Code Exported!"
                                                      message:@"Your code is saved in your photo album."
                                                     delegate:nil
@@ -117,7 +122,14 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
 	self.splitViewController.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserverForName:EventsDatabaseAvailabilityNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      self.managedObjectContext = note.userInfo[EventsDatabaseAvailabilityContext];
+                                                  }];
 }
 
 - (BOOL)splitViewController:(UISplitViewController *)svc

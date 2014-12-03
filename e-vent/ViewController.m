@@ -7,6 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "EventsDatabase.h"
+#import "CreateCodeViewController.h"
+#import "ReadCodeViewController.h"
+#import "SavedEventsTVC.h"
 
 @interface ViewController ()
 
@@ -18,14 +22,30 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [[NSNotificationCenter defaultCenter] addObserverForName:EventsDatabaseAvailabilityNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      self.managedObjectContext = note.userInfo[EventsDatabaseAvailabilityContext];
+                                                  }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSString *segueIdentifier = [segue identifier];
+    if ([segueIdentifier isEqualToString:@"create"]) {
+        CreateCodeViewController *vc = [segue destinationViewController];
+        vc.managedObjectContext = self.managedObjectContext;
+    }else if ([segueIdentifier isEqualToString:@"read"]) {
+        ReadCodeViewController *vc = [segue destinationViewController];
+        vc.managedObjectContext = self.managedObjectContext;
+    }else if ([segueIdentifier isEqualToString:@"list"]) {
+        SavedEventsTVC *vc = [segue destinationViewController];
+        vc.managedObjectContext = self.managedObjectContext;
+    }
 }
 
 @end
