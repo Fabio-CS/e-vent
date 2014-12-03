@@ -17,7 +17,6 @@
     event.dtStart = dtStart;
     event.dtEnd = dtEnd;
     event.code = image;
-    
     return event;
 }
 
