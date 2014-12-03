@@ -20,7 +20,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZV-tI-Tum">
                                 <rect key="frame" x="224" y="285" width="153" height="30"/>
-                                <state key="normal" title="Create an e-vent code">
+                                <state key="normal" title="create an e-vent code">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -29,7 +29,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GqA-HE-p1q">
                                 <rect key="frame" x="251" y="410" width="99" height="30"/>
-                                <state key="normal" title="Saved e-vents">
+                                <state key="normal" title="saved e-vents">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
@@ -42,7 +42,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04T-Sm-A80">
                                 <rect key="frame" x="228" y="160" width="144" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Read an e-vent code"/>
+                                <state key="normal" title="read an e-vent code"/>
                                 <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="128" y="162" width="144" height="30"/>
                                 </variation>
@@ -53,22 +53,27 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="GqA-HE-p1q" firstAttribute="top" secondItem="TZV-tI-Tum" secondAttribute="bottom" constant="95" id="6Gr-dB-U6I"/>
                             <constraint firstItem="04T-Sm-A80" firstAttribute="centerY" secondItem="TZV-tI-Tum" secondAttribute="centerY" id="7YN-Rr-Owp"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GqA-HE-p1q" secondAttribute="bottom" constant="141" id="8eq-1Y-AIT">
                                 <variation key="heightClass=regular" constant="8" symbolic="YES"/>
                             </constraint>
                             <constraint firstItem="GqA-HE-p1q" firstAttribute="centerX" secondItem="TZV-tI-Tum" secondAttribute="centerX" id="8zp-OZ-nOS"/>
+                            <constraint firstItem="TZV-tI-Tum" firstAttribute="top" secondItem="04T-Sm-A80" secondAttribute="bottom" constant="95" id="Bgb-O4-wgg"/>
+                            <constraint firstAttribute="centerX" secondItem="TZV-tI-Tum" secondAttribute="centerX" id="Bn6-mK-e75"/>
                             <constraint firstItem="04T-Sm-A80" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BtF-PJ-J7Z"/>
                             <constraint firstItem="GqA-HE-p1q" firstAttribute="top" secondItem="TZV-tI-Tum" secondAttribute="bottom" constant="101" id="IHH-fb-eVy">
                                 <variation key="heightClass=regular-widthClass=regular" constant="115"/>
                             </constraint>
                             <constraint firstItem="04T-Sm-A80" firstAttribute="centerY" secondItem="GqA-HE-p1q" secondAttribute="centerY" id="IzA-Vc-Uxi"/>
+                            <constraint firstItem="TZV-tI-Tum" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="L6Z-2u-C4G"/>
                             <constraint firstItem="TZV-tI-Tum" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="PJu-h0-rTT"/>
                             <constraint firstAttribute="centerX" secondItem="04T-Sm-A80" secondAttribute="centerX" id="PNK-be-Cho"/>
                             <constraint firstItem="GqA-HE-p1q" firstAttribute="top" secondItem="TZV-tI-Tum" secondAttribute="bottom" constant="95" id="QLh-kc-FwB">
                                 <variation key="heightClass=compact" constant="50"/>
                             </constraint>
                             <constraint firstAttribute="centerY" secondItem="TZV-tI-Tum" secondAttribute="centerY" id="QLl-pV-18m"/>
+                            <constraint firstItem="TZV-tI-Tum" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="126" id="Vtf-Nd-LyX"/>
                             <constraint firstItem="TZV-tI-Tum" firstAttribute="top" secondItem="04T-Sm-A80" secondAttribute="bottom" constant="86" id="WWR-Fv-mvo"/>
                             <constraint firstItem="GqA-HE-p1q" firstAttribute="centerX" secondItem="TZV-tI-Tum" secondAttribute="centerX" id="Zr4-Rv-u1C"/>
                             <constraint firstAttribute="centerY" secondItem="TZV-tI-Tum" secondAttribute="centerY" id="blu-Rg-jU2"/>
@@ -82,6 +87,7 @@
                             <constraint firstItem="04T-Sm-A80" firstAttribute="centerX" secondItem="TZV-tI-Tum" secondAttribute="centerX" id="jaB-1g-u3N"/>
                             <constraint firstAttribute="centerX" secondItem="TZV-tI-Tum" secondAttribute="centerX" id="nu4-Sp-SDf"/>
                             <constraint firstItem="TZV-tI-Tum" firstAttribute="centerX" secondItem="04T-Sm-A80" secondAttribute="centerX" id="uWD-Mf-s1O"/>
+                            <constraint firstAttribute="centerY" secondItem="TZV-tI-Tum" secondAttribute="centerY" id="wG6-p5-yZc"/>
                             <constraint firstAttribute="centerX" secondItem="04T-Sm-A80" secondAttribute="centerX" id="zvJ-rQ-NRb"/>
                         </constraints>
                         <variation key="default">
@@ -92,10 +98,16 @@
                                 <exclude reference="dCd-6A-Wtv"/>
                                 <exclude reference="jaB-1g-u3N"/>
                                 <exclude reference="zvJ-rQ-NRb"/>
+                                <exclude reference="Bgb-O4-wgg"/>
+                                <exclude reference="Bn6-mK-e75"/>
+                                <exclude reference="L6Z-2u-C4G"/>
+                                <exclude reference="Vtf-Nd-LyX"/>
                                 <exclude reference="WWR-Fv-mvo"/>
                                 <exclude reference="blu-Rg-jU2"/>
                                 <exclude reference="nu4-Sp-SDf"/>
                                 <exclude reference="uWD-Mf-s1O"/>
+                                <exclude reference="wG6-p5-yZc"/>
+                                <exclude reference="6Gr-dB-U6I"/>
                                 <exclude reference="8zp-OZ-nOS"/>
                                 <exclude reference="IHH-fb-eVy"/>
                                 <exclude reference="Zr4-Rv-u1C"/>
@@ -115,6 +127,23 @@
                                 <include reference="Zr4-Rv-u1C"/>
                                 <include reference="dY9-Cm-ZFK"/>
                                 <exclude reference="8eq-1Y-AIT"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Bgb-O4-wgg"/>
+                                <include reference="Bn6-mK-e75"/>
+                                <include reference="L6Z-2u-C4G"/>
+                                <exclude reference="PJu-h0-rTT"/>
+                                <exclude reference="QLl-pV-18m"/>
+                                <exclude reference="Vtf-Nd-LyX"/>
+                                <exclude reference="cLu-67-qsS"/>
+                                <exclude reference="dYg-PM-BZt"/>
+                                <exclude reference="wG6-p5-yZc"/>
+                                <include reference="6Gr-dB-U6I"/>
+                                <exclude reference="QLh-kc-FwB"/>
+                                <exclude reference="Zr4-Rv-u1C"/>
+                                <exclude reference="dY9-Cm-ZFK"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -294,7 +323,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Read an e-vent code" id="whi-zy-yn8"/>
+                    <navigationItem key="navigationItem" title="read an e-vent code" id="whi-zy-yn8"/>
                     <connections>
                         <outlet property="labelEnds" destination="Gqj-iy-Wgm" id="QvX-Da-Gdw"/>
                         <outlet property="labelStarts" destination="lua-bM-yxZ" id="XCR-hv-5ZQ"/>
@@ -306,7 +335,7 @@
             </objects>
             <point key="canvasLocation" x="2386.5" y="-774"/>
         </scene>
-        <!--Scan-->
+        <!--scan-->
         <scene sceneID="lG4-To-AZS">
             <objects>
                 <viewController id="9SK-I9-lXc" sceneMemberID="viewController">
@@ -318,13 +347,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Scan" id="pUp-pH-Oeu"/>
+                    <navigationItem key="navigationItem" title="scan" id="pUp-pH-Oeu"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zW-3h-7cH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3243" y="-774"/>
         </scene>
-        <!--Saved EventsTVC-->
+        <!--saved e-vents-->
         <scene sceneID="g7C-gE-qWL">
             <objects>
                 <tableViewController id="HF5-1b-XpO" customClass="SavedEventsTVC" sceneMemberID="viewController">
@@ -362,6 +391,7 @@
                             <outlet property="delegate" destination="HF5-1b-XpO" id="QYY-ii-F26"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="saved e-vents" id="fjU-Pp-M7X"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="65F-Q4-FRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -470,7 +500,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Create an e-vent" id="e8F-hS-EaQ"/>
+                    <navigationItem key="navigationItem" title="create an e-vent" id="e8F-hS-EaQ"/>
                     <connections>
                         <outlet property="datePickerEnd" destination="7Ot-Y8-ipc" id="Qdy-Gf-i2c"/>
                         <outlet property="datePickerStart" destination="Vcq-Bz-5qt" id="FbL-T4-2KT"/>
