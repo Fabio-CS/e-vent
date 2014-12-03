@@ -131,12 +131,14 @@
 
 -(void)readCode{
     NSURL *url = [NSURL URLWithString:@"http://api.qrserver.com/v1/read-qr-code/"];
+    //NSURL *url = [NSURL URLWithString:@"http://postcatcher.in/catchers/547e447e0e93f102000002ac"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setHTTPShouldHandleCookies:NO];
     [request setTimeoutInterval:30];
     [request setHTTPMethod:@"POST"];
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data"];
+    NSString *boundary = @"SportuondoFormBoundary";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
     [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
@@ -144,9 +146,8 @@
 
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     
-    
     // Build the request body
-    NSString *boundary = @"SportuondoFormBoundary";
+    
     NSMutableData *body = [NSMutableData data];
     // Body part for "deviceId" parameter. This is a string.
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -166,14 +167,22 @@
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     sessionConfiguration.HTTPAdditionalHeaders = @{@"Content-Type"  : [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary]
                                                    };
-   request.HTTPBody = body;
+    [request setHTTPBody:body];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSString *icalString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                NSLog(@"%@",icalString);
-                [self iCalStringParser:icalString];
-                [self createCalendarEvent];
+                NSError *localError = nil;
+                NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
+                if (localError){
+                    NSLog(@"JSON PARSER ERROR: %@", localError);
+                }else{
+                    NSArray *jsonResult = [jsonDict valueForKey:@"symbol"];
+                    NSDictionary *qrcode = [[NSDictionary alloc] initWithDictionary:[[jsonResult firstObject] firstObject]];
+                    NSString *icalString = [qrcode valueForKeyPath:@"data"];
+                    NSLog(@"Data String: %@", icalString);
+                    [self iCalStringParser:icalString];
+                    [self createCalendarEvent];
+                }
             });
         }
     }];
@@ -210,7 +219,7 @@
 }
 
 - (NSDictionary *)iCalStringParser:(NSString *)icalString{
-    icalString = @"BEGIN:VEVENT\nSUMMARY:Evento\nDTSTART:20141201T120000Z\nDTEND:20141203T120000Z\nEND:VEVENT";
+    //icalString = @"BEGIN:VEVENT\nSUMMARY:Evento\nDTSTART:20141201T120000Z\nDTEND:20141203T120000Z\nEND:VEVENT";
     NSMutableDictionary *iCalDict = [[NSMutableDictionary alloc] init];
     NSMutableArray *dataEvent = [NSMutableArray arrayWithArray:[icalString componentsSeparatedByString:@"\n"]];
     [dataEvent removeObjectAtIndex:0];
@@ -227,9 +236,12 @@
     NSDate *dtEnd = [dateFormatter dateFromString:strDTEnd];
     [iCalDict setObject:dtStart forKey:@"DTSTART"];
     [iCalDict setObject:dtEnd forKey:@"DTEND"];
-    self.eventTitle = [iCalDict objectForKey:@"SUMMARY"];
-    self.eventDTStarts = [iCalDict objectForKey:@"DTSTART"];
-    self.eventDTEnds = [iCalDict objectForKey:@"DTEND"];
+    NSLog(@"EVENT TITLE: %@", [iCalDict objectForKey:@"SUMMARY"]);
+    NSLog(@"EVENT DTSTARTS: %@", [iCalDict objectForKey:@"DTSTARTS"]);
+    NSLog(@"EVENT DTENDS: %@", [iCalDict objectForKey:@"DTENDS"]);
+    //self.eventTitle = [iCalDict objectForKey:@"SUMMARY"];
+    //self.eventDTStarts = [iCalDict objectForKey:@"DTSTART"];
+    //self.eventDTEnds = [iCalDict objectForKey:@"DTEND"];
     return iCalDict;
 }
 
