@@ -14,6 +14,7 @@
 		05F4B0B71A2EEBBF00D9C425 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B0B61A2EEBBF00D9C425 /* Event.m */; };
 		05F4B0BA1A2EF26A00D9C425 /* SavedEventsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B0B91A2EF26A00D9C425 /* SavedEventsTVC.m */; };
 		05F4B0BD1A2F226F00D9C425 /* Event+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B0BC1A2F226F00D9C425 /* Event+Create.m */; };
+		05F4B0C21A2F572900D9C425 /* ScanCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B0C11A2F572900D9C425 /* ScanCodeViewController.m */; };
 		05FFE5D21A08B6B600EC7D62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FFE5D11A08B6B600EC7D62 /* main.m */; };
 		05FFE5D51A08B6B600EC7D62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FFE5D41A08B6B600EC7D62 /* AppDelegate.m */; };
 		05FFE5D81A08B6B600EC7D62 /* e_vent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05FFE5D61A08B6B600EC7D62 /* e_vent.xcdatamodeld */; };
@@ -50,6 +51,8 @@
 		05F4B0BB1A2F226F00D9C425 /* Event+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+Create.h"; sourceTree = "<group>"; };
 		05F4B0BC1A2F226F00D9C425 /* Event+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+Create.m"; sourceTree = "<group>"; };
 		05F4B0BF1A2F363900D9C425 /* EventsDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventsDatabase.h; sourceTree = "<group>"; };
+		05F4B0C01A2F572900D9C425 /* ScanCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanCodeViewController.h; sourceTree = "<group>"; };
+		05F4B0C11A2F572900D9C425 /* ScanCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanCodeViewController.m; sourceTree = "<group>"; };
 		05FFE5CC1A08B6B600EC7D62 /* e-vent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-vent.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05FFE5D01A08B6B600EC7D62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05FFE5D11A08B6B600EC7D62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				05F4B0B01A2EEAF900D9C425 /* CoreData */,
 				052DCCDC1A0A10AC00048F79 /* ReadCodeViewController.h */,
 				052DCCDD1A0A10AC00048F79 /* ReadCodeViewController.m */,
+				05F4B0C01A2F572900D9C425 /* ScanCodeViewController.h */,
+				05F4B0C11A2F572900D9C425 /* ScanCodeViewController.m */,
 				052DCCD91A0A104C00048F79 /* CreateCodeViewController.h */,
 				052DCCDA1A0A104C00048F79 /* CreateCodeViewController.m */,
 				052DCCD31A09FD5300048F79 /* ImageViewController.h */,
@@ -278,6 +283,7 @@
 			files = (
 				052DCCD51A09FD5300048F79 /* ImageViewController.m in Sources */,
 				052DCCDE1A0A10AC00048F79 /* ReadCodeViewController.m in Sources */,
+				05F4B0C21A2F572900D9C425 /* ScanCodeViewController.m in Sources */,
 				05F4B0B71A2EEBBF00D9C425 /* Event.m in Sources */,
 				05F4B0B41A2EEB1D00D9C425 /* CoreDataTableViewController.m in Sources */,
 				05F4B0BA1A2EF26A00D9C425 /* SavedEventsTVC.m in Sources */,

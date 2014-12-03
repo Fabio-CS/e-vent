@@ -8,7 +8,7 @@
 
 #import "ReadCodeViewController.h"
 #import "Event+Create.h"
-#import "AppDelegate.h"
+#import "ScanCodeViewController.h"
 
 @interface ReadCodeViewController()<UIScrollViewDelegate, UISplitViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) UIImageView *imageView;
@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSDate *eventDTEnds;
 @end
 @implementation ReadCodeViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -101,7 +102,6 @@
     _scrollView.delegate = self;
     self.scrollView.contentSize = self.image ? self.image.size : CGSizeZero;
 }
-
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
@@ -247,6 +247,15 @@
     return iCalDict;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSString *segueIdentifier = [segue identifier];
+    if ([segueIdentifier isEqualToString:@"scan"]) {
+        ScanCodeViewController *vc = [segue destinationViewController];
+        vc.managedObjectContext = self.managedObjectContext;
+    }
+    
+}
 
 
 #pragma mark - iPadView

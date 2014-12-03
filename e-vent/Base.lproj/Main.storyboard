@@ -123,7 +123,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="E-vent" id="XTg-dw-qSU"/>
+                    <navigationItem key="navigationItem" title="e-vent" id="XTg-dw-qSU"/>
                     <connections>
                         <outlet property="createCode" destination="TZV-tI-Tum" id="0h5-UT-lZc"/>
                         <outlet property="listCodes" destination="GqA-HE-p1q" id="QBv-sM-raP"/>
@@ -176,10 +176,22 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMQ-mA-g4j">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="Scan">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="scanCode:" destination="3nW-HI-bnB" eventType="touchUpInside" id="c6y-Qw-4nq"/>
+                                            <segue destination="9SK-I9-lXc" kind="show" identifier="scan" id="cA7-d6-bTX"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="zMQ-mA-g4j" firstAttribute="top" secondItem="Naz-q6-HJ4" secondAttribute="bottom" constant="8" id="9e7-1o-Gxv"/>
                                     <constraint firstItem="tJ4-ye-KPv" firstAttribute="leading" secondItem="HZd-qx-BBi" secondAttribute="leadingMargin" id="HJJ-7V-7Wg"/>
+                                    <constraint firstItem="Naz-q6-HJ4" firstAttribute="centerX" secondItem="zMQ-mA-g4j" secondAttribute="centerX" constant="5.5" id="Tl7-g6-l8D"/>
                                     <constraint firstAttribute="centerX" secondItem="Naz-q6-HJ4" secondAttribute="centerX" id="cJt-Ww-bsa"/>
                                     <constraint firstItem="Gqj-iy-Wgm" firstAttribute="leading" secondItem="lua-bM-yxZ" secondAttribute="leading" id="eoS-hd-dg9"/>
                                     <constraint firstAttribute="centerY" secondItem="Naz-q6-HJ4" secondAttribute="centerY" id="f7U-EI-vlX"/>
@@ -194,16 +206,19 @@
                                         <exclude reference="tJ4-ye-KPv"/>
                                         <exclude reference="lua-bM-yxZ"/>
                                         <exclude reference="Gqj-iy-Wgm"/>
+                                        <exclude reference="zMQ-mA-g4j"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="eoS-hd-dg9"/>
-                                        <exclude reference="gKQ-0O-BRq"/>
-                                        <exclude reference="hjH-Du-4DD"/>
-                                        <exclude reference="khd-2D-WEf"/>
                                         <exclude reference="HJJ-7V-7Wg"/>
                                         <exclude reference="grI-vb-L42"/>
+                                        <exclude reference="hjH-Du-4DD"/>
+                                        <exclude reference="khd-2D-WEf"/>
+                                        <exclude reference="eoS-hd-dg9"/>
+                                        <exclude reference="gKQ-0O-BRq"/>
+                                        <exclude reference="Tl7-g6-l8D"/>
                                         <exclude reference="cJt-Ww-bsa"/>
                                         <exclude reference="f7U-EI-vlX"/>
+                                        <exclude reference="9e7-1o-Gxv"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -212,16 +227,19 @@
                                         <include reference="tJ4-ye-KPv"/>
                                         <include reference="lua-bM-yxZ"/>
                                         <include reference="Gqj-iy-Wgm"/>
+                                        <include reference="zMQ-mA-g4j"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="eoS-hd-dg9"/>
-                                        <include reference="gKQ-0O-BRq"/>
-                                        <include reference="hjH-Du-4DD"/>
-                                        <include reference="khd-2D-WEf"/>
                                         <include reference="HJJ-7V-7Wg"/>
                                         <include reference="grI-vb-L42"/>
+                                        <include reference="hjH-Du-4DD"/>
+                                        <include reference="khd-2D-WEf"/>
+                                        <include reference="eoS-hd-dg9"/>
+                                        <include reference="gKQ-0O-BRq"/>
+                                        <include reference="Tl7-g6-l8D"/>
                                         <include reference="cJt-Ww-bsa"/>
                                         <include reference="f7U-EI-vlX"/>
+                                        <include reference="9e7-1o-Gxv"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -287,6 +305,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJP-tf-lBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2386.5" y="-774"/>
+        </scene>
+        <!--Scan-->
+        <scene sceneID="lG4-To-AZS">
+            <objects>
+                <viewController id="9SK-I9-lXc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tJy-q7-HaL"/>
+                        <viewControllerLayoutGuide type="bottom" id="7d5-Qr-zmj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="maI-f4-wbO">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Scan" id="pUp-pH-Oeu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3zW-3h-7cH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3243" y="-774"/>
         </scene>
         <!--Saved EventsTVC-->
         <scene sceneID="g7C-gE-qWL">
