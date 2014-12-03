@@ -22,7 +22,6 @@
 @property (nonatomic, strong) NSDate *eventDTEnds;
 @end
 @implementation ReadCodeViewController
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,7 +41,7 @@
 }
 
 -(void)setEventDTStarts:(NSDate *)eventDTStarts{
-    self.eventDTStarts = eventDTStarts;
+    _eventDTStarts = eventDTStarts;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
@@ -50,26 +49,28 @@
 }
 
 -(void)setEventDTEnds:(NSDate *)eventDTEnds{
-    self.eventDTEnds = eventDTEnds;
+    _eventDTEnds = eventDTEnds;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    self.eventStarts = [dateFormatter stringFromDate:self.eventDTStarts];
+    self.eventEnds = [dateFormatter stringFromDate:self.eventDTEnds];
 }
 
 -(void)setEventTitle:(NSString *)eventTitle{
-    self.eventTitle = eventTitle;
-    self.labelTitle.text = [self.labelTitle.text stringByAppendingString:self.eventTitle];
+    _eventTitle = eventTitle;
+    self.labelTitle.text = [_labelTitle.text stringByAppendingString:_eventTitle];
 }
 
 -(void)setEventStarts:(NSString *)eventStarts{
-    self.eventStarts = eventStarts;
-    self.labelStarts.text = [self.labelStarts.text stringByAppendingString:self.eventStarts];
+    _eventStarts = eventStarts;
+    self.labelStarts.text = [self.labelStarts.text stringByAppendingString:_eventStarts];
+    NSLog(@"String eventStarts: %@", self.eventStarts);
 }
 
 -(void)setEventEnds:(NSString *)eventEnds{
-    self.eventEnds = eventEnds;
-    self.labelEnds.text = [self.labelEnds.text stringByAppendingString:self.eventEnds];
+    _eventEnds = eventEnds;
+    self.labelEnds.text = [_labelEnds.text stringByAppendingString:_eventEnds];
+     NSLog(@"String eventEnds: %@", self.eventEnds);
 }
 
 - (UIImage *)image
@@ -179,7 +180,6 @@
                     NSArray *jsonResult = [jsonDict valueForKey:@"symbol"];
                     NSDictionary *qrcode = [[NSDictionary alloc] initWithDictionary:[[jsonResult firstObject] firstObject]];
                     NSString *icalString = [qrcode valueForKeyPath:@"data"];
-                    NSLog(@"Data String: %@", icalString);
                     [self iCalStringParser:icalString];
                     [self createCalendarEvent];
                 }
@@ -236,12 +236,9 @@
     NSDate *dtEnd = [dateFormatter dateFromString:strDTEnd];
     [iCalDict setObject:dtStart forKey:@"DTSTART"];
     [iCalDict setObject:dtEnd forKey:@"DTEND"];
-    NSLog(@"EVENT TITLE: %@", [iCalDict objectForKey:@"SUMMARY"]);
-    NSLog(@"EVENT DTSTARTS: %@", [iCalDict objectForKey:@"DTSTARTS"]);
-    NSLog(@"EVENT DTENDS: %@", [iCalDict objectForKey:@"DTENDS"]);
-    //self.eventTitle = [iCalDict objectForKey:@"SUMMARY"];
-    //self.eventDTStarts = [iCalDict objectForKey:@"DTSTART"];
-    //self.eventDTEnds = [iCalDict objectForKey:@"DTEND"];
+    self.eventTitle = [iCalDict objectForKey:@"SUMMARY"];
+    self.eventDTStarts = [iCalDict objectForKey:@"DTSTART"];
+    self.eventDTEnds = [iCalDict objectForKey:@"DTEND"];
     return iCalDict;
 }
 
