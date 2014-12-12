@@ -84,7 +84,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         ivc.eventEnds = [dateFormatter stringFromDate:event.dtEnd];
         ivc.image = [[UIImage alloc] initWithData:event.code];
         ivc.managedObjectContext = self.managedObjectContext;
-        
     }
 }
 
